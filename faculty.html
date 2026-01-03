@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty | EduCare</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary: #1a56db;
+            --secondary: #0ea5e9;
+            --accent: #10b981;
+            --dark: #1f2937;
+            --light: #f9fafb;
+            --gray: #6b7280;
+            --text: #374151;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --card-bg: #ffffff;
+        }
+
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .section-title.center {
+            text-align: center;
+        }
+
+        .section-title.center::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Header & Navigation */
+        header {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 0px 20px;
+}
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .faculty-hero {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 80px 0 40px;
+            /* text-align: center; */
+        }
+
+        .faculty-hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .faculty-hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 800px;
+            /* margin: 0 auto 40px; */
+        }
+
+        /* Stats Section */
+        .faculty-stats {
+            padding: 60px 0;
+            background-color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            text-align: center;
+        }
+
+        .stat-card {
+            padding: 30px 20px;
+            background-color: var(--light);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        /* Teachers Section */
+        .teachers-section {
+            padding: 80px 0;
+        }
+
+        .teachers-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        .teachers-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .teacher-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+
+        .teacher-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .teacher-img {
+            height: 200px;
+            background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .teacher-img i {
+            font-size: 5rem;
+            color: var(--primary);
+            opacity: 0.7;
+        }
+
+        .teacher-info {
+            padding: 25px 20px;
+        }
+
+        .teacher-initials {
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: -40px auto 15px;
+            position: relative;
+        }
+
+        .teacher-info h3 {
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .teacher-position {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .teacher-qualification {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        /* Departments Section */
+        .departments-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .departments-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .department-card {
+            background-color: var(--light);
+            padding: 30px 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border-top: 4px solid var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .department-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .department-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .department-card h3 {
+            font-size: 1.2rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .department-head {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        /* Join Faculty Section */
+        .join-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .join-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .join-section p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        .join-email {
+            font-size: 1.3rem;
+            margin-top: 30px;
+            font-weight: 600;
+        }
+
+        .join-email a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 2px solid white;
+            padding-bottom: 2px;
+        }
+
+        .join-email a:hover {
+            opacity: 0.8;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 2fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .footer-about p {
+            color: #d1d5db;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+        }
+
+        .footer-links h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .contact-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            color: #d1d5db;
+        }
+
+        .contact-item i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        .affiliation {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: #d1d5db;
+        }
+
+        /* Hamburger */
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                flex-direction: column;
+                align-items: center;
+                display: none;
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .stats-grid,
+            .teachers-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .departments-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .faculty-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .stats-grid,
+            .teachers-grid,
+            .departments-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.7rem;
+            }
+
+            .join-section h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <!-- <i class="fas fa-graduation-cap"></i> EduCare -->
+<img src="./logo.jpg" height="50px" alt="logo">
+            </a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./about.html">About</a></li>
+                <li><a href="./courses.html">Courses</a></li>
+                <li><a href="./admissions.html">Admissions</a></li>
+                <li><a href="./faculty.html">Faculty</a></li>
+                <li><a href="./facilities.html">Facilities</a></li>
+                <li><a href="./gallery.html">Gallery</a></li>
+                <li><a href="./contact.html">Contact</a></li>
+            </ul>
+
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="faculty-hero">
+        <div class="container">
+            <h1>Our Faculty</h1>
+            <p>Meet our dedicated team of highly qualified educators committed to nurturing excellence and shaping the
+                future of our students.</p>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="faculty-stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">200+</div>
+                    <div class="stat-label">Expert Teachers</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">PhD Holders</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Qualified</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teachers Section -->
+    <section class="teachers-section">
+        <div class="container">
+            <h2 class="section-title center">Meet Our Expert Teachers</h2>
+            <p class="teachers-intro">Our faculty members are passionate educators with extensive experience and strong
+                academic backgrounds.</p>
+
+            <div class="teachers-grid">
+                <!-- Teacher 1 -->
+                <div class="teacher-card">
+                    <div class="teacher-img">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <div class="teacher-initials">DAH</div>
+                    <div class="teacher-info">
+                        <h3>Dr. Ahmed Hassan</h3>
+                        <div class="teacher-position">Principal, Physics Professor</div>
+                        <div class="teacher-qualification">PhD in Physics</div>
+                    </div>
+                </div>
+
+                <!-- Teacher 2 -->
+                <div class="teacher-card">
+                    <div class="teacher-img">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="teacher-initials">PAK</div>
+                    <div class="teacher-info">
+                        <h3>Prof. Aneela Khan</h3>
+                        <div class="teacher-position">Vice Principal</div>
+                        <div class="teacher-qualification">MPhil Mathematics</div>
+                    </div>
+                </div>
+
+                <!-- Teacher 3 -->
+                <div class="teacher-card">
+                    <div class="teacher-img">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <div class="teacher-initials">MBA</div>
+                    <div class="teacher-info">
+                        <h3>Ms. Beenish Ahmed</h3>
+                        <div class="teacher-position">Mathematics Teacher</div>
+                        <div class="teacher-qualification">MSc Mathematics</div>
+                    </div>
+                </div>
+
+                <!-- Teacher 4 -->
+                <div class="teacher-card">
+                    <div class="teacher-img">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <div class="teacher-initials">DMG</div>
+                    <div class="teacher-info">
+                        <h3>Dr. Maria Qureshi</h3>
+                        <div class="teacher-position">Chemistry Professor</div>
+                        <div class="teacher-qualification">PhD in Chemistry</div>
+                    </div>
+                </div>
+
+                <!-- Teacher 5 -->
+                <div class="teacher-card">
+                    <div class="teacher-img">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <div class="teacher-initials">MNA</div>
+                    <div class="teacher-info">
+                        <h3>Ms. Naima Ahmed</h3>
+                        <div class="teacher-position">Biology Teacher</div>
+                        <div class="teacher-qualification">MSc Biology</div>
+                    </div>
+                </div>
+
+                <!-- Teacher 6 -->
+                <div class="teacher-card">
+                    <div class="teacher-img">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="teacher-initials">MFA</div>
+                    <div class="teacher-info">
+                        <h3>Ms. Farah Khan</h3>
+                        <div class="teacher-position">Computer Science Teacher</div>
+                        <div class="teacher-qualification">MCS Computer Science</div>
+                    </div>
+                </div>
+
+                <!-- Teacher 7 -->
+                <div class="teacher-card">
+                    <div class="teacher-img">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="teacher-initials">MST</div>
+                    <div class="teacher-info">
+                        <h3>Ms. Sana Tahir</h3>
+                        <div class="teacher-position">English Teacher</div>
+                        <div class="teacher-qualification">MA English Literature</div>
+                    </div>
+                </div>
+
+                <!-- Teacher 8 -->
+                <div class="teacher-card">
+                    <div class="teacher-img">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <div class="teacher-initials">MZU</div>
+                    <div class="teacher-info">
+                        <h3>Ms. Zainab Riaz</h3>
+                        <div class="teacher-position">Urdu Teacher</div>
+                        <div class="teacher-qualification">MA Urdu</div>
+                    </div>
+                </div>
+
+                <!-- Teacher 9 -->
+                <div class="teacher-card">
+                    <div class="teacher-img">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <div class="teacher-initials">PZR</div>
+                    <div class="teacher-info">
+                        <h3>Prof. Zafar Rehman</h3>
+                        <div class="teacher-position">Commerce Teacher</div>
+                        <div class="teacher-qualification">M.Com, ACCA</div>
+                    </div>
+                </div>
+
+                <!-- Teacher 10 -->
+                <div class="teacher-card">
+                    <div class="teacher-img">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <div class="teacher-initials">MKA</div>
+                    <div class="teacher-info">
+                        <h3>Mr. Kamran Ali</h3>
+                        <div class="teacher-position">Mathematics Teacher</div>
+                        <div class="teacher-qualification">MSc Mathematics</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Departments Section -->
+    <section class="departments-section">
+        <div class="container">
+            <h2 class="section-title center">Academic Departments</h2>
+            <p class="teachers-intro">Well-organized departments ensuring focused and quality education.</p>
+
+            <div class="departments-grid">
+                <div class="department-card">
+                    <i class="fas fa-flask"></i>
+                    <h3>Science Department</h3>
+                    <div class="department-head">Head: Dr. Ahmed Hassan</div>
+                </div>
+
+                <div class="department-card">
+                    <i class="fas fa-calculator"></i>
+                    <h3>Mathematics Department</h3>
+                    <div class="department-head">Head: Dr. Ali Raza</div>
+                </div>
+
+                <div class="department-card">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Computer Science Department</h3>
+                    <div class="department-head">Head: Dr. Kamran Ali</div>
+                </div>
+
+                <div class="department-card">
+                    <i class="fas fa-language"></i>
+                    <h3>Language Department</h3>
+                    <div class="department-head">Head: Ms. Sana Tahir</div>
+                </div>
+
+                <div class="department-card">
+                    <i class="fas fa-coins"></i>
+                    <h3>Commerce Department</h3>
+                    <div class="department-head">Head: Prof. Zafar Rehman</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join Faculty Section -->
+    <section class="join-section">
+        <div class="container">
+            <h2>Join Our Faculty</h2>
+            <p>We are always looking for passionate and qualified educators. If you're interested in making a
+                difference, we'd love to hear from you.</p>
+            <a href="mailto:careers@educare.edu.pk" class="btn btn-secondary">Apply Now</a>
+            <div class="join-email">
+                <i class="far fa-envelope"></i> Email: <a
+                    href="mailto:careers@educare.edu.pk">careers@educare.edu.pk</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="index.html" class="footer-logo"><!-- <i class="fas fa-graduation-cap"></i> EduCare -->
+<img src="./logo.jpg" height="50px" alt="logo"></a>
+                    <p>Teaching graduate students (primary studies), teachers and interns in universities.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="admissions.html">Admissions</a></li>
+                        <li><a href="results.html">Results</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="faculty.html">Faculty</a></li>
+                        <li><a href="facilities.html">Facilities</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="portal.html">Student Portal</a></li>
+                    </ul>
+                </div>
+
+                <div class="contact-info">
+                    <h3>Connect With Us</h3>
+                    <p style="color: #d1d5db; margin-bottom: 20px; font-size: 0.95rem;">Follow us on social media for
+                        updates.</p>
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+92-51-1234567</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@educare.edu.pk</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Model Town, Lahore, Pakistan</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2023 EduCare Institute. All rights reserved.</p>
+                <p class="affiliation">Registered with Federal Board & Punjab Board | Affiliated Educational Institution
+                </p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const menuToggle = document.getElementById("menuToggle");
+        const navLinks = document.getElementById("navLinks");
+
+        menuToggle.addEventListener("click", () => {
+            navLinks.classList.toggle("active");
+        });
+    </script>
+    <script>
+        // Simple script for navigation active state
+        document.addEventListener('DOMContentLoaded', function () {
+            const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('.nav-links a');
+
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Add hover effect to teacher cards
+            const teacherCards = document.querySelectorAll('.teacher-card');
+            teacherCards.forEach(card => {
+                card.addEventListener('mouseenter', function () {
+                    this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.15)';
+                });
+
+                card.addEventListener('mouseleave', function () {
+                    this.style.boxShadow = 'var(--shadow)';
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

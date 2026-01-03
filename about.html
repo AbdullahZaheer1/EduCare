@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | EduCare</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary: #1a56db;
+            --secondary: #0ea5e9;
+            --accent: #10b981;
+            --dark: #1f2937;
+            --light: #f9fafb;
+            --gray: #6b7280;
+            --text: #374151;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --card-bg: #ffffff;
+        }
+
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        /* Header & Navigation */
+        header {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 0px 20px;
+}
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        /* About Hero */
+        .about-hero {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 80px 0 60px;
+            /* text-align: center; */
+        }
+
+        .about-hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+
+        .about-hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 800px;
+            /* margin: 0 auto 30px; */
+        }
+
+        .highlight {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 80px 0;
+        }
+
+        .content-section:nth-child(even) {
+            background-color: white;
+        }
+
+        .mission-vision-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            border-top: 4px solid var(--primary);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .card h3 i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+
+        .card ul {
+            list-style-position: inside;
+            margin-left: 10px;
+        }
+
+        .card li {
+            margin-bottom: 12px;
+            color: var(--gray);
+        }
+
+        /* Story Section */
+        .story-content {
+            margin-top: 30px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--gray);
+        }
+
+        .story-content p {
+            margin-bottom: 20px;
+        }
+
+        /* Core Values */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .value-card {
+            background-color: var(--card-bg);
+            padding: 30px 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .value-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .value-card h4 {
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .value-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* Journey Timeline */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 40px auto 0;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--primary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            border-left: 4px solid var(--primary);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            border-right: 4px solid var(--primary);
+        }
+
+        .timeline-year {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .timeline-content h4 {
+            font-size: 1.1rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .timeline-content p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid var(--primary);
+            border-radius: 50%;
+            top: 20px;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(odd)::after {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+
+        /* Leadership */
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .leader-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .leader-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .leader-img {
+            height: 200px;
+            background-color: #e0f2fe;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .leader-img i {
+            font-size: 5rem;
+            color: var(--primary);
+            opacity: 0.7;
+        }
+
+        .leader-info {
+            padding: 25px 20px;
+        }
+
+        .leader-info h4 {
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .leader-info .position {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .leader-info .quote {
+            color: var(--gray);
+            font-style: italic;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 60px 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 2fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .footer-about p {
+            color: #d1d5db;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+        }
+
+        .footer-links h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .contact-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            color: #d1d5db;
+        }
+
+        .contact-item i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        /* Hamburger */
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                flex-direction: column;
+                align-items: center;
+                display: none;
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .about-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .mission-vision-grid,
+            .values-grid,
+            .leadership-grid,
+            .stats-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.7rem;
+            }
+
+            .timeline::after {
+                left: 20px;
+            }
+
+            .timeline-item {
+                padding-left: 50px;
+                padding-right: 15px;
+            }
+
+            .timeline-item::after {
+                left: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <!-- <i class="fas fa-graduation-cap"></i> EduCare -->
+<img src="./logo.jpg" height="50px" alt="logo">
+            </a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./about.html">About</a></li>
+                <li><a href="./courses.html">Courses</a></li>
+                <li><a href="./admissions.html">Admissions</a></li>
+                <li><a href="./faculty.html">Faculty</a></li>
+                <li><a href="./facilities.html">Facilities</a></li>
+                <li><a href="./gallery.html">Gallery</a></li>
+                <li><a href="./contact.html">Contact</a></li>
+            </ul>
+
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- About Hero Section -->
+    <section class="about-hero">
+        <div class="container">
+            <h1>About EduCare</h1>
+            <p><span class="highlight">Established in 2016</span>, EduCare is the candidate to learn your energy,
+                energy, dedication to freedom, creativity, safety, ethical thinking and culture from the industry.</p>
+        </div>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section class="content-section">
+        <div class="container">
+            <div class="mission-vision-grid">
+                <div class="card">
+                    <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
+                    <ul>
+                        <li>To create a safe, inclusive and inspiring mission with the world, we have committed our
+                            vision to ensure that the leaders of our people are truly well positioned.</li>
+                        <li>To develop a holistic, inclusive and inspiring mission, we have committed our vision to
+                            ensure that the leaders of our people are truly well positioned.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3><i class="fas fa-eye"></i> Our Vision</h3>
+                    <ul>
+                        <li>To be transparent at providing a better understanding about our philosophy, culture, life,
+                            culture, and culture, supporting our vision through our leadership, culture, relationships,
+                            culture, energy, culture, and culture.</li>
+                        <li>Supporting our vision through our leadership, culture, and our commitment to progress.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story -->
+    <section class="content-section" style="background-color: white;">
+        <div class="container">
+            <h2 class="section-title">Our Story</h2>
+            <div class="story-content">
+                <p>EduCare has focused on the focus of 2008 data. In addition to the first time, many researchers
+                    reported that EduCare was able to transform its spirit into traditional safety and self-support
+                    systems.</p>
+                <p>One of the most ambitious works was developing an ideal and innovative approach to achieving
+                    high-quality education and professional excellence. We also introduced a comprehensive research
+                    programme for education and professional excellence, focusing on the importance of learning and
+                    development of programs and solutions for learning in the digital world.</p>
+                <p>Many authors (GEO) mention how these initiatives will help improve their growth in social and
+                    economic growth in businesses. The goal of this initiative is to build resilience, improve the
+                    strength of working with employees and working with others, expanding Leadership.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Our Core Values</h2>
+            <p style="color: var(--gray); margin-bottom: 30px;">The principles and goals emerging up on all EduCare
+                activities.</p>
+
+            <div class="values-grid">
+                <div class="value-card">
+                    <i class="fas fa-star"></i>
+                    <h4>Excellence</h4>
+                    <p>Overheaded activities, including a full-time training and online feedback thousands of unique
+                        experiences in the world.</p>
+                </div>
+
+                <div class="value-card">
+                    <i class="fas fa-bolt"></i>
+                    <h4>Energy</h4>
+                    <p>Thousands of unique experiences in the world, including a full-time training and online feedback.
+                    </p>
+                </div>
+
+                <div class="value-card">
+                    <i class="fas fa-laptop-code"></i>
+                    <h4>Technology</h4>
+                    <p>Thousands of unique experiences in the world, including a full-time training and online feedback.
+                    </p>
+                </div>
+
+                <div class="value-card">
+                    <i class="fas fa-lightbulb"></i>
+                    <h4>Innovation</h4>
+                    <p>Thousands of unique experiences in the world, including a full-time training and online feedback.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Journey -->
+    <section class="content-section" style="background-color: white;">
+        <div class="container">
+            <h2 class="section-title">Our Journey</h2>
+            <p style="color: var(--gray); margin-bottom: 30px;">Milestones achieved by EduCare over the years.</p>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2020</div>
+                        <h4>EduCare Vision initiative launched</h4>
+                        <p>Successfully launched our vision initiative with innovative educational approaches.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2021</div>
+                        <h4>Launched online learning platform with 2000+ students</h4>
+                        <p>Expanded our reach with a comprehensive online learning platform.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2022</div>
+                        <h4>Introduced the virtual classroom and mobile app</h4>
+                        <p>Enhanced learning experience with virtual classrooms and mobile accessibility.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2023</div>
+                        <h4>Expanded to reach students across all provinces of Pakistan</h4>
+                        <p>Successfully established presence in all major regions of Pakistan.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2024</div>
+                        <h4>Currently teaching 5000+ students and 200+ sessions now</h4>
+                        <p>Continuing our growth with thousands of active students and hundreds of sessions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Our Leadership</h3>
+                <p style="color: var(--gray); margin-bottom: 30px;">Dedicated collection leading EduCare towards
+                    excellence.</p>
+
+                <div class="leadership-grid">
+                    <div class="leader-card">
+                        <div class="leader-img">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="leader-info">
+                            <h4>Dr. Muhammad Jamil</h4>
+                            <div class="position">CEO & Founder</div>
+                            <p>With over 15 years of experience in education technology and leadership.</p>
+                            <div class="quote">"Our best future partner says: Education transforms lives."</div>
+                        </div>
+                    </div>
+
+                    <div class="leader-card">
+                        <div class="leader-img">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="leader-info">
+                            <h4>Dr. Ayesha Hassan</h4>
+                            <div class="position">Director of Academics</div>
+                            <p>PhD in Educational Psychology with expertise in curriculum development.</p>
+                            <div class="quote">"Quality education should be accessible to everyone."</div>
+                        </div>
+                    </div>
+
+                    <div class="leader-card">
+                        <div class="leader-img">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="leader-info">
+                            <h4>Raja Ahmed Khan</h4>
+                            <div class="position">Head of Operations</div>
+                            <p>Specializes in educational operations and student success management.</p>
+                            <div class="quote">"Innovation in education drives student success."</div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <h2 style="color: white; text-align: center; margin-bottom: 50px; font-size: 2rem;">EduCare in Numbers</h2>
+
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">5000+</div>
+                    <div class="stat-label">Active Students</div>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-number">200+</div>
+                    <div class="stat-label">Expert Teachers</div>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Success Rate</div>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Online Courses</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="index.html" class="footer-logo"><!-- <i class="fas fa-graduation-cap"></i> EduCare -->
+<img src="./logo.jpg" height="50px" alt="logo"></a>
+                    <p>Pakistan's premier online education platform offering Federal and Punjab Board programs with
+                        interactive virtual classes and expert instructors.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="admissions.html">Admissions</a></li>
+                        <li><a href="results.html">Results</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="faculty.html">Faculty</a></li>
+                        <li><a href="facilities.html">Facilities</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="#">Student Portal</a></li>
+                    </ul>
+                </div>
+
+                <div class="contact-info">
+                    <h3>Contact Us</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+92-51-1234567</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@educare.edu.pk</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Model Town, Lahore, Pakistan</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-certificate"></i>
+                        <span>Federal Board & Punjab Board Affiliated</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2023 EduCare Institute. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const menuToggle = document.getElementById("menuToggle");
+        const navLinks = document.getElementById("navLinks");
+
+        menuToggle.addEventListener("click", () => {
+            navLinks.classList.toggle("active");
+        });
+    </script>
+    <script>
+        // Simple script for navigation active state
+        document.addEventListener('DOMContentLoaded', function () {
+            const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('.nav-links a');
+
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Add smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

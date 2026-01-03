@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | EduCare - Pakistan's Leading Virtual Institute</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --accent: #f59e0b;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+            --success: #10b981;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 0px 20px;
+}
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-size: 1rem;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .nav-cta .btn {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .nav-cta .btn:hover {
+            background-color: var(--secondary);
+        }
+
+        /* Contact Hero */
+        .contact-hero {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 80px 0 60px;
+        }
+
+        .contact-hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+
+        .contact-hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 800px;
+            margin-bottom: 30px;
+        }
+
+        /* Main Content */
+        .contact-content {
+            padding: 80px 0;
+        }
+
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--dark);
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .btn-submit {
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--secondary);
+        }
+
+        /* Contact Info */
+        .contact-info-card {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            height: 100%;
+        }
+
+        .transport-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .transport-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .transport-list li:last-child {
+            border-bottom: none;
+        }
+
+        .transport-icon {
+            background-color: var(--light);
+            color: var(--primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.2rem;
+        }
+
+        .transport-content h4 {
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        /* Map Section */
+        .map-section {
+            margin-bottom: 60px;
+        }
+
+        .map-container {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-placeholder {
+            height: 400px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+        }
+
+        .map-info {
+            padding: 30px;
+            text-align: center;
+        }
+
+        /* Footer Links Section */
+        .footer-links-section {
+            background-color: var(--white);
+            padding: 60px 0;
+            margin-top: 40px;
+            border-top: 1px solid var(--light-gray);
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        @media (max-width: 992px) {
+            .links-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .links-column h3 {
+            color: var(--dark);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .links-column ul {
+            list-style: none;
+        }
+
+        .links-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .links-column ul li a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .links-column ul li a:hover {
+            color: var(--primary);
+        }
+
+        /* Connect Section */
+        .connect-section {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .social-icon:hover {
+            background-color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 2fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 992px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .footer-about p {
+            color: #cbd5e1;
+            margin-bottom: 20px;
+        }
+
+        .footer-links h3 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--primary);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 15px;
+            color: #cbd5e1;
+        }
+
+        .contact-item i {
+            color: var(--primary);
+            margin-top: 3px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        /* Hamburger */
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                flex-direction: column;
+                align-items: center;
+                display: none;
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-container {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <!-- <i class="fas fa-graduation-cap"></i> EduCare -->
+<img src="./logo.jpg" height="50px" alt="logo">
+            </a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./about.html">About</a></li>
+                <li><a href="./courses.html">Courses</a></li>
+                <li><a href="./admissions.html">Admissions</a></li>
+                <li><a href="./faculty.html">Faculty</a></li>
+                <li><a href="./facilities.html">Facilities</a></li>
+                <li><a href="./gallery.html">Gallery</a></li>
+                <li><a href="./contact.html">Contact</a></li>
+            </ul>
+
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- Contact Hero -->
+    <section class="contact-hero">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <p>Have questions about our online programs? We are here to help! Reach out to us through any of the
+                following channels.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="contact-content container">
+        <div class="content-wrapper">
+            <!-- Contact Form -->
+            <div>
+                <h2 class="section-title">Send us a Message</h2>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" placeholder="Enter your full name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" placeholder="your@email.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" placeholder="+92 555 55500000">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <select id="subject" required>
+                                <option value="">What is this regarding?</option>
+                                <option value="admission">Admission Inquiry</option>
+                                <option value="course">Course Information</option>
+                                <option value="technical">Technical Support</option>
+                                <option value="feedback">Feedback</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" placeholder="Please describe your inquiry details."
+                                required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Contact Info & Transport -->
+            <div>
+                <h2 class="section-title">How to Reach Us</h2>
+                <div class="contact-info-card">
+                    <p>Easy access via public and private transport</p>
+
+                    <ul class="transport-list">
+                        <li>
+                            <div class="transport-icon">
+                                <i class="fas fa-car"></i>
+                            </div>
+                            <div class="transport-content">
+                                <h4>By Car</h4>
+                                <p>Your Passenger Road, Sun at Model Town Link, Ample parking available on campus.</p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="transport-icon">
+                                <i class="fas fa-bus"></i>
+                            </div>
+                            <div class="transport-content">
+                                <h4>By Bus</h4>
+                                <p>Unique bus routes pass through Model Town. Get off at Model Town Stop.</p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="transport-icon">
+                                <i class="fas fa-subway"></i>
+                            </div>
+                            <div class="transport-content">
+                                <h4>By Metro</h4>
+                                <p>Easily accessible by exclusive Metro line of Lance. Just reach Subclave Institute
+                                    station.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Map Section -->
+        <div class="map-section">
+            <h2 class="section-title">Find Us on Map</h2>
+            <div class="map-container">
+                <div class="map-placeholder">
+                    <div style="text-align: center;">
+                        <i class="fas fa-map-marker-alt" style="font-size: 4rem; margin-bottom: 20px;"></i>
+                        <p>Interactive Map Location</p>
+                    </div>
+                </div>
+                <div class="map-info">
+                    <p>Located in the heart of Lance, easily accessible from all major areas</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Links Section -->
+        <div class="footer-links-section">
+            <div class="links-grid">
+                <div class="links-column">
+                    <h3>EndCare Services</h3>
+                    <ul>
+                        <li><a href="#"><strong>Lance:</strong> Easy access</a></li>
+                        <li><a href="#"><strong>Resubser:</strong> High quality</a></li>
+                        <li><a href="#"><strong>Creation:</strong> Access</a></li>
+                        <li><a href="#"><strong>Trade:</strong> Access home track</a></li>
+                        <li><a href="#"><strong>Telefo:</strong> Transfer</a></li>
+                        <li><a href="#">Independent service</a></li>
+                        <li><a href="#">Solar Travel Center</a></li>
+                    </ul>
+                </div>
+
+                <div class="links-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="admissions.html">Admissions</a></li>
+                        <li><a href="retailer.html">Retailer</a></li>
+                    </ul>
+                </div>
+
+                <div class="links-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="faculty.html">Faculty</a></li>
+                        <li><a href="faculty.html">Faculty</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="subservice.html">Subservice</a></li>
+                    </ul>
+                </div>
+
+                <div class="links-column">
+                    <h3>Connect With Us</h3>
+                    <p>Follow us to stay updated with announcements, news, and more.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="connect-section">
+                <h3>Connect VPNs</h3>
+                <p>Follow us to reach mobile for updates, announcements, and news.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="index.html" class="footer-logo"><!-- <i class="fas fa-graduation-cap"></i> EduCare -->
+<img src="./logo.jpg" height="50px" alt="logo"></a>
+                    <p>Pakistan's premier online education platform offering Federal and Punjab Board programs with
+                        interactive virtual classes and expert instructors.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="admissions.html">Admissions</a></li>
+                        <li><a href="results.html">Results</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="faculty.html">Faculty</a></li>
+                        <li><a href="facilities.html">Facilities</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="portal.html">Student Portal</a></li>
+                    </ul>
+                </div>
+
+                <div class="contact-info">
+                    <h3>Contact Us</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+92-555-55500000</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@educare.edu.pk</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Model Town, Lance, Pakistan</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-certificate"></i>
+                        <span>Federal Board & Punjab Board Affiliated Educational Institution</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2024 EduCare Institute. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const menuToggle = document.getElementById("menuToggle");
+        const navLinks = document.getElementById("navLinks");
+
+        menuToggle.addEventListener("click", () => {
+            navLinks.classList.toggle("active");
+        });
+    </script>
+    <script>
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+
+            // Show success message
+            alert(`Thank you ${name}! Your message has been sent successfully. We'll contact you at ${email} regarding ${subject}.`);
+
+            // Reset form
+            this.reset();
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Active nav link
+        window.addEventListener('scroll', function () {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+
+            let current = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+
+                if (scrollY >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

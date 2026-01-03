@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | EduCare</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary: #1a56db;
+            --secondary: #0ea5e9;
+            --accent: #10b981;
+            --dark: #1f2937;
+            --light: #f9fafb;
+            --gray: #6b7280;
+            --text: #374151;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --card-bg: #ffffff;
+        }
+
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .section-title.center {
+            text-align: center;
+        }
+
+        .section-title.center::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        /* Header & Navigation */
+        header {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 0px 20px;
+}
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .gallery-hero {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 80px 0 40px;
+            /* text-align: center; */
+        }
+
+        .gallery-hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+
+        .gallery-hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 800px;
+            /* margin: 0 auto 40px; */
+        }
+
+        /* Photo Gallery */
+        .photo-gallery {
+            padding: 80px 0;
+        }
+
+        .gallery-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+            height: 250px;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.05);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-category {
+            font-size: 0.8rem;
+            color: #d1d5db;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .gallery-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* Video Gallery */
+        .video-gallery {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .video-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .video-thumbnail {
+            height: 180px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .play-button {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover .play-button {
+            background-color: white;
+            transform: scale(1.1);
+        }
+
+        .video-info {
+            padding: 20px;
+        }
+
+        .video-info h3 {
+            font-size: 1.2rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .video-duration {
+            display: flex;
+            align-items: center;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .video-duration i {
+            margin-right: 5px;
+        }
+
+        /* Social Media Section */
+        .social-section {
+            padding: 80px 0;
+        }
+
+        .social-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .social-card {
+            background-color: var(--card-bg);
+            padding: 40px 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .social-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .social-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .facebook {
+            background: linear-gradient(135deg, #1877F2, #0d5cb6);
+        }
+
+        .instagram {
+            background: linear-gradient(135deg, #E4405F, #C13584);
+        }
+
+        .twitter {
+            background: linear-gradient(135deg, #1DA1F2, #0d8bd9);
+        }
+
+        .youtube {
+            background: linear-gradient(135deg, #FF0000, #cc0000);
+        }
+
+        .social-card h3 {
+            font-size: 1.2rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .social-card p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 2fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .footer-about p {
+            color: #d1d5db;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+        }
+
+        .footer-links h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .contact-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            color: #d1d5db;
+        }
+
+        .contact-item i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        .affiliation {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: #d1d5db;
+        }
+
+        /* Modal for Gallery */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1001;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .modal-img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        /* Hamburger */
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                flex-direction: column;
+                align-items: center;
+                display: none;
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .gallery-grid,
+            .video-grid,
+            .social-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .gallery-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .gallery-grid,
+            .video-grid,
+            .social-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.7rem;
+            }
+
+            .gallery-item {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <!-- <i class="fas fa-graduation-cap"></i> EduCare -->
+<img src="./logo.jpg" height="50px" alt="logo">
+            </a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./about.html">About</a></li>
+                <li><a href="./courses.html">Courses</a></li>
+                <li><a href="./admissions.html">Admissions</a></li>
+                <li><a href="./faculty.html">Faculty</a></li>
+                <li><a href="./facilities.html">Facilities</a></li>
+                <li><a href="./gallery.html">Gallery</a></li>
+                <li><a href="./contact.html">Contact</a></li>
+            </ul>
+
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="gallery-hero">
+        <div class="container">
+            <h1>Photo Gallery</h1>
+            <p>Explore virtual learning at EduCare through our photo gallery. See our online platform, virtual events,
+                and the vibrant online student community in action.</p>
+        </div>
+    </section>
+
+    <!-- Photo Gallery -->
+    <section class="photo-gallery">
+        <div class="container">
+            <p class="gallery-intro">Browse through our collection of images showcasing the EduCare virtual learning
+                experience.</p>
+
+            <div class="gallery-grid">
+                <!-- Image 1 -->
+                <div class="gallery-item" onclick="openModal('img1')">
+                    <div class="gallery-img"
+                        style="background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%); display: flex; align-items: center; justify-content: center; color: var(--primary);">
+                        <i class="fas fa-chalkboard-teacher" style="font-size: 4rem;"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-category">Virtual Classroom</div>
+                        <div class="gallery-title">Live Online Learning Session</div>
+                    </div>
+                </div>
+
+                <!-- Image 2 -->
+                <div class="gallery-item" onclick="openModal('img2')">
+                    <div class="gallery-img"
+                        style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); display: flex; align-items: center; justify-content: center; color: var(--primary);">
+                        <i class="fas fa-users" style="font-size: 4rem;"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-category">Student Community</div>
+                        <div class="gallery-title">Online Discussion Forum</div>
+                    </div>
+                </div>
+
+                <!-- Image 3 -->
+                <div class="gallery-item" onclick="openModal('img3')">
+                    <div class="gallery-img"
+                        style="background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%); display: flex; align-items: center; justify-content: center; color: var(--primary);">
+                        <i class="fas fa-laptop-code" style="font-size: 4rem;"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-category">Technology</div>
+                        <div class="gallery-title">Digital Learning Tools</div>
+                    </div>
+                </div>
+
+                <!-- Image 4 -->
+                <div class="gallery-item" onclick="openModal('img4')">
+                    <div class="gallery-img"
+                        style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); display: flex; align-items: center; justify-content: center; color: var(--primary);">
+                        <i class="fas fa-graduation-cap" style="font-size: 4rem;"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-category">Achievements</div>
+                        <div class="gallery-title">Student Success Celebration</div>
+                    </div>
+                </div>
+
+                <!-- Image 5 -->
+                <div class="gallery-item" onclick="openModal('img5')">
+                    <div class="gallery-img"
+                        style="background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%); display: flex; align-items: center; justify-content: center; color: var(--primary);">
+                        <i class="fas fa-book-open" style="font-size: 4rem;"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-category">Resources</div>
+                        <div class="gallery-title">Digital Library Access</div>
+                    </div>
+                </div>
+
+                <!-- Image 6 -->
+                <div class="gallery-item" onclick="openModal('img6')">
+                    <div class="gallery-img"
+                        style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); display: flex; align-items: center; justify-content: center; color: var(--primary);">
+                        <i class="fas fa-headset" style="font-size: 4rem;"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-category">Support</div>
+                        <div class="gallery-title">24/7 Student Assistance</div>
+                    </div>
+                </div>
+
+                <!-- Image 7 -->
+                <div class="gallery-item" onclick="openModal('img7')">
+                    <div class="gallery-img"
+                        style="background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%); display: flex; align-items: center; justify-content: center; color: var(--primary);">
+                        <i class="fas fa-mobile-alt" style="font-size: 4rem;"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-category">Mobile Learning</div>
+                        <div class="gallery-title">App-Based Education</div>
+                    </div>
+                </div>
+
+                <!-- Image 8 -->
+                <div class="gallery-item" onclick="openModal('img8')">
+                    <div class="gallery-img"
+                        style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); display: flex; align-items: center; justify-content: center; color: var(--primary);">
+                        <i class="fas fa-cloud" style="font-size: 4rem;"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-category">Technology</div>
+                        <div class="gallery-title">Cloud-Based Platform</div>
+                    </div>
+                </div>
+
+                <!-- Image 9 -->
+                <div class="gallery-item" onclick="openModal('img9')">
+                    <div class="gallery-img"
+                        style="background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%); display: flex; align-items: center; justify-content: center; color: var(--primary);">
+                        <i class="fas fa-certificate" style="font-size: 4rem;"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-category">Recognition</div>
+                        <div class="gallery-title">Digital Certificates</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Gallery -->
+    <section class="video-gallery">
+        <div class="container">
+            <h2 class="section-title center">Video Gallery</h2>
+            <p class="social-intro">Watch highlights from our events, campus tours, and student testimonials</p>
+
+            <div class="video-grid">
+                <!-- Video 1 -->
+                <div class="video-card">
+                    <div class="video-thumbnail" onclick="playVideo('video1')">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Campus Tour Video</h3>
+                        <div class="video-duration">
+                            <i class="far fa-clock"></i>
+                            <span>Duration: 2:30</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video 2 -->
+                <div class="video-card">
+                    <div class="video-thumbnail" onclick="playVideo('video2')">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Student Testimonials</h3>
+                        <div class="video-duration">
+                            <i class="far fa-clock"></i>
+                            <span>Duration: 3:15</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video 3 -->
+                <div class="video-card">
+                    <div class="video-thumbnail" onclick="playVideo('video3')">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Virtual Classroom Demo</h3>
+                        <div class="video-duration">
+                            <i class="far fa-clock"></i>
+                            <span>Duration: 4:20</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media Section -->
+    <section class="social-section">
+        <div class="container">
+            <h2 class="section-title center">Follow Us on Social Media</h2>
+            <p class="social-intro">Stay updated with daily activities, announcements, and more by following us on
+                social media.</p>
+
+            <div class="social-grid">
+                <div class="social-card">
+                    <div class="social-icon facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <h3>Facebook</h3>
+                    <p>@EduCareInstitute</p>
+                </div>
+
+                <div class="social-card">
+                    <div class="social-icon instagram">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <h3>Instagram</h3>
+                    <p>@educare_institute</p>
+                </div>
+
+                <div class="social-card">
+                    <div class="social-icon twitter">
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                    <h3>Twitter</h3>
+                    <p>@EduCareOfficial</p>
+                </div>
+
+                <div class="social-card">
+                    <div class="social-icon youtube">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <h3>YouTube</h3>
+                    <p>EduCare Institute</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="index.html" class="footer-logo"><!-- <i class="fas fa-graduation-cap"></i> EduCare -->
+<img src="./logo.jpg" height="50px" alt="logo"></a>
+                    <p>Empowering Pakistani students through quality education and innovative learning approaches since
+                        2005.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="admissions.html">Admissions</a></li>
+                        <li><a href="results.html">Results</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="faculty.html">Faculty</a></li>
+                        <li><a href="facilities.html">Facilities</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="portal.html">Student Portal</a></li>
+                    </ul>
+                </div>
+
+                <div class="contact-info">
+                    <h3>Connect With Us</h3>
+                    <p style="color: #d1d5db; margin-bottom: 20px; font-size: 0.95rem;">Follow us on social media for
+                        updates, announcements, and more.</p>
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+92-51-1234567</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@educare.edu.pk</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Model Town, Lahore, Pakistan</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2025 EduCare Institute. All rights reserved.</p>
+                <p class="affiliation">Registered with Federal Board & Punjab Board | Affiliated Educational Institution
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal for Images -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <img id="modalImage" class="modal-img" src="" alt="Gallery Image">
+        </div>
+    </div>
+    <script>
+        const menuToggle = document.getElementById("menuToggle");
+        const navLinks = document.getElementById("navLinks");
+
+        menuToggle.addEventListener("click", () => {
+            navLinks.classList.toggle("active");
+        });
+    </script>
+    <script>
+        // Simple script for navigation active state
+        document.addEventListener('DOMContentLoaded', function () {
+            const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('.nav-links a');
+
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Modal functions for gallery images
+        function openModal(imageId) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+
+            // Set different placeholder images based on imageId
+            const imageColors = [
+                'linear-gradient(135deg, #1a56db, #0ea5e9)',
+                'linear-gradient(135deg, #0ea5e9, #10b981)',
+                'linear-gradient(135deg, #10b981, #f59e0b)',
+                'linear-gradient(135deg, #f59e0b, #ef4444)',
+                'linear-gradient(135deg, #ef4444, #8b5cf6)',
+                'linear-gradient(135deg, #8b5cf6, #1a56db)',
+                'linear-gradient(135deg, #1a56db, #0ea5e9)',
+                'linear-gradient(135deg, #0ea5e9, #10b981)',
+                'linear-gradient(135deg, #10b981, #f59e0b)'
+            ];
+
+            const imageIndex = parseInt(imageId.replace('img', '')) - 1;
+            const bgColor = imageColors[imageIndex] || imageColors[0];
+
+            // Create a canvas image with gradient background
+            modalImg.src = `data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">${getGradientStops(bgColor)}</linearGradient></defs><rect width="800" height="600" fill="url(#grad)"/><text x="400" y="300" font-family="Arial" font-size="24" fill="white" text-anchor="middle">EduCare Gallery Image ${imageIndex + 1}</text></svg>`;
+
+            modal.style.display = 'flex';
+        }
+
+        function getGradientStops(gradient) {
+            // Extract colors from gradient string
+            const matches = gradient.match(/#[0-9a-fA-F]{6}/g);
+            if (matches && matches.length >= 2) {
+                return `<stop offset="0%" stop-color="${matches[0]}"/><stop offset="100%" stop-color="${matches[1]}"/>`;
+            }
+            return '<stop offset="0%" stop-color="#1a56db"/><stop offset="100%" stop-color="#0ea5e9"/>';
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside the image
+        window.onclick = function (event) {
+            const modal = document.getElementById('imageModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Video play function
+        function playVideo(videoId) {
+            alert(`Playing ${videoId}. In a real implementation, this would open a video player.`);
+        }
+
+        // Add hover effect to gallery items
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        galleryItems.forEach(item => {
+            item.addEventListener('mouseenter', function () {
+                this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.2)';
+            });
+
+            item.addEventListener('mouseleave', function () {
+                this.style.boxShadow = 'var(--shadow)';
+            });
+        });
+    </script>
+</body>
+
+</html>

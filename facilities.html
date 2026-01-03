@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facilities | EduCare</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary: #1a56db;
+            --secondary: #0ea5e9;
+            --accent: #10b981;
+            --dark: #1f2937;
+            --light: #f9fafb;
+            --gray: #6b7280;
+            --text: #374151;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --card-bg: #ffffff;
+        }
+
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .section-title.center {
+            text-align: center;
+        }
+
+        .section-title.center::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        /* Header & Navigation */
+        header {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 0px 20px;
+}
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .facilities-hero {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 80px 0 60px;
+        }
+
+        .facilities-hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+
+        .facilities-hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 800px;
+            margin-bottom: 30px;
+        }
+
+        /* Facilities Grid */
+        .facilities-section {
+            padding: 80px 0;
+        }
+
+        .facilities-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .facility-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .facility-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .facility-header {
+            display: flex;
+            align-items: center;
+            padding: 25px 25px 15px;
+            background-color: #f8fafc;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .facility-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+        }
+
+        .facility-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .facility-title {
+            flex: 1;
+        }
+
+        .facility-title h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .facility-content {
+            padding: 25px;
+        }
+
+        .facility-description {
+            color: var(--gray);
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .facility-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-item i {
+            color: var(--primary);
+            margin-right: 10px;
+            font-size: 0.9rem;
+        }
+
+        .feature-text {
+            font-size: 0.95rem;
+            color: var(--gray);
+        }
+
+        /* Platform Advantages */
+        .advantages-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .advantage-card {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: var(--light);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .advantage-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .advantage-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .advantage-icon i {
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        .advantage-card h3 {
+            font-size: 1.2rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .advantage-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* System Requirements */
+        .requirements-section {
+            padding: 80px 0;
+        }
+
+        .requirements-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .requirement-box {
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .requirement-title {
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .requirement-list {
+            list-style-type: none;
+        }
+
+        .requirement-list li {
+            margin-bottom: 15px;
+            color: var(--gray);
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .requirement-list i {
+            color: var(--primary);
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+
+        /* Help Section */
+        .help-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .help-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        .help-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .help-card {
+            text-align: center;
+            padding: 40px 30px;
+            background-color: var(--light);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .help-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .help-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+        }
+
+        .help-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .help-card h3 {
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .help-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 2fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .footer-about p {
+            color: #d1d5db;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+        }
+
+        .footer-links h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .contact-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            color: #d1d5db;
+        }
+
+        .contact-item i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        .affiliation {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: #d1d5db;
+        }
+
+        /* Hamburger */
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                flex-direction: column;
+                align-items: center;
+                display: none;
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .facilities-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .advantages-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .requirements-container,
+            .help-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .facilities-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .advantages-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.7rem;
+            }
+
+            .facility-features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <!-- <i class="fas fa-graduation-cap"></i> EduCare -->
+<img src="./logo.jpg" height="50px" alt="logo">
+            </a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./about.html">About</a></li>
+                <li><a href="./courses.html">Courses</a></li>
+                <li><a href="./admissions.html">Admissions</a></li>
+                <li><a href="./faculty.html">Faculty</a></li>
+                <li><a href="./facilities.html">Facilities</a></li>
+                <li><a href="./gallery.html">Gallery</a></li>
+                <li><a href="./contact.html">Contact</a></li>
+            </ul>
+
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="facilities-hero">
+        <div class="container">
+            <h1>Online Learning Platform</h1>
+            <p>EduCare provides cutting-edge virtual learning tools and resources designed to deliver the best online
+                education experience from anywhere in Pakistan.</p>
+        </div>
+    </section>
+
+    <!-- Facilities Grid -->
+    <section class="facilities-section">
+        <div class="container">
+            <div class="facilities-grid">
+                <!-- Facility 1: Live Virtual Classrooms -->
+                <div class="facility-card">
+                    <div class="facility-header">
+                        <div class="facility-icon">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <div class="facility-title">
+                            <h3>Live Virtual Classrooms</h3>
+                        </div>
+                    </div>
+                    <div class="facility-content">
+                        <p class="facility-description">
+                            Experience real-time interactive learning with our advanced virtual classroom platform
+                            featuring HD video, audio, digital whiteboard, screen sharing, and breakout rooms for group
+                            activities.
+                        </p>
+                        <div class="facility-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span class="feature-text">HD Video & Audio</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span class="feature-text">Interactive Whiteboard</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span class="feature-text">Screen Sharing</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span class="feature-text">Breakout Rooms</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Facility 2: Digital Library & Resources -->
+                <div class="facility-card">
+                    <div class="facility-header">
+                        <div class="facility-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="facility-title">
+                            <h3>Digital Library & Resources</h3>
+                        </div>
+                    </div>
+                    <div class="facility-content">
+                        <p class="facility-description">
+                            Access our comprehensive e-library with 10,000+ digital books, reference materials, past
+                            papers, solved examples, and study guides available 24/7 from any device.
+                        </p>
+                        <div class="facility-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span class="feature-text">10,000+ E-Books</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span class="feature-text">Past Papers</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span class="feature-text">Study Guides</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span class="feature-text">24/7 Access</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Facility 3: Recorded Lecture Library -->
+                <div class="facility-card">
+                    <div class="facility-header">
+                        <div class="facility-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <div class="facility-title">
+                            <h3>Recorded Lecture Library</h3>
+                        </div>
+                    </div>
+                    <div class="facility-content">
+                        <p class="facility-description">
+                            Never miss a class! All lectures are automatically recorded and stored in your personal
+                            library. Watch, rewatch, and learn at your own pace with playback controls.
+                        </p>
+                        <div class="facility-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span class="feature-text">Auto-Recording</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span class="feature-text">Unlimited Rewatching</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span class="feature-text">Playback Speed Control</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span class="feature-text">Bookmarking</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Facility 4: 24/7 Student Support -->
+                <div class="facility-card">
+                    <div class="facility-header">
+                        <div class="facility-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <div class="facility-title">
+                            <h3>24/7 Student Support</h3>
+                        </div>
+                    </div>
+                    <div class="facility-content">
+                        <p class="facility-description">
+                            Our dedicated support team is always available to help you via live chat, email, or video
+                            call. Get assistance with technical issues, course queries, or academic guidance.
+                        </p>
+                        <div class="facility-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span class="feature-text">Live Chat Support</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span class="feature-text">Email Assistance</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span class="feature-text">Video Call Support</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span class="feature-text">Technical Help</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Facility 5: Online Assessment System -->
+                <div class="facility-card">
+                    <div class="facility-header">
+                        <div class="facility-icon">
+                            <i class="fas fa-clipboard-check"></i>
+                        </div>
+                        <div class="facility-title">
+                            <h3>Online Assessment System</h3>
+                        </div>
+                    </div>
+                    <div class="facility-content">
+                        <p class="facility-description">
+                            Comprehensive testing platform with automatic grading, instant feedback, detailed analytics,
+                            and performance tracking to monitor your progress throughout the course.
+                        </p>
+                        <div class="facility-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span class="feature-text">Auto-Grading</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span class="feature-text">Instant Feedback</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span class="feature-text">Performance Analytics</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span class="feature-text">Mock Tests</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Facility 6: Discussion Forums -->
+                <div class="facility-card">
+                    <div class="facility-header">
+                        <div class="facility-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <div class="facility-title">
+                            <h3>Discussion Forums</h3>
+                        </div>
+                    </div>
+                    <div class="facility-content">
+                        <p class="facility-description">
+                            Engage with peers and teachers through interactive discussion boards. Ask questions, share
+                            knowledge, collaborate on assignments, and build a learning community.
+                        </p>
+                        <div class="facility-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span class="feature-text">Peer Discussion</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span class="feature-text">Q&A with Teachers</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span class="feature-text">Group Projects</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span class="feature-text">Study Groups</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Facility 7: Mobile Learning App -->
+                <div class="facility-card">
+                    <div class="facility-header">
+                        <div class="facility-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="facility-title">
+                            <h3>Mobile Learning App</h3>
+                        </div>
+                    </div>
+                    <div class="facility-content">
+                        <p class="facility-description">
+                            Learn on-the-go with our mobile app for Android and iOS. Access classes, notes, assignments,
+                            and resources from your smartphone or tablet anytime, anywhere.
+                        </p>
+                        <div class="facility-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span class="feature-text">Android & iOS Apps</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span class="feature-text">Offline Mode</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span class="feature-text">Push Notifications</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span class="feature-text">Mobile-Optimized</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Facility 8: Cloud Storage -->
+                <div class="facility-card">
+                    <div class="facility-header">
+                        <div class="facility-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <div class="facility-title">
+                            <h3>Cloud Storage</h3>
+                        </div>
+                    </div>
+                    <div class="facility-content">
+                        <p class="facility-description">
+                            Store all your assignments, notes, and study materials securely in the cloud. Access your
+                            files from any device with automatic sync and backup.
+                        </p>
+                        <div class="facility-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span class="feature-text">Secure Storage</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span class="feature-text">Auto-Sync</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span class="feature-text">File Backup</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span class="feature-text">Multi-Device Access</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platform Advantages -->
+    <section class="advantages-section">
+        <div class="container">
+            <h2 class="section-title center">Platform Advantages</h2>
+            <p class="help-intro">Additional features that make our virtual learning platform stand out</p>
+
+            <div class="advantages-grid">
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Secure Platform</h3>
+                    <p>End-to-end encryption for your data security and privacy protection.</p>
+                </div>
+
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>Flexible Schedule</h3>
+                    <p>Learn at your convenient time with 24/7 access to all resources.</p>
+                </div>
+
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <h3>Low Bandwidth Mode</h3>
+                    <p>Works efficiently on slow internet connections for accessibility.</p>
+                </div>
+
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Certification</h3>
+                    <p>Digital certificates upon successful completion of courses.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- System Requirements -->
+    <section class="requirements-section">
+        <div class="container">
+            <h2 class="section-title center">System Requirements</h2>
+
+            <div class="requirements-container">
+                <div class="requirement-box">
+                    <h3 class="requirement-title">Minimum Requirements</h3>
+                    <ul class="requirement-list">
+                        <li><i class="fas fa-laptop"></i> Computer/Laptop or Smartphone</li>
+                        <li><i class="fas fa-wifi"></i> Internet connection (2 Mbps minimum)</li>
+                        <li><i class="fas fa-video"></i> Webcam and Microphone (for live classes)</li>
+                        <li><i class="fas fa-globe"></i> Updated web browser (Chrome/Firefox/Safari)</li>
+                    </ul>
+                </div>
+
+                <div class="requirement-box">
+                    <h3 class="requirement-title">Recommended Setup</h3>
+                    <ul class="requirement-list">
+                        <li><i class="fas fa-home"></i> Dedicated study space at home</li>
+                        <li><i class="fas fa-broadcast-tower"></i> Broadband internet (5 Mbps or higher)</li>
+                        <li><i class="fas fa-headphones"></i> Headphones for better audio quality</li>
+                        <li><i class="fas fa-tablet-alt"></i> Tablet or second screen for note-taking</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Help Section -->
+    <section class="help-section">
+        <div class="container">
+            <h2 class="section-title center">Need Help Getting Started?</h2>
+            <p class="help-intro">Our technical support team is here to help you set up and get started with our
+                platform</p>
+
+            <div class="help-grid">
+                <div class="help-card">
+                    <div class="help-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Live Chat Support</h3>
+                    <p>Get instant help from our support team available 24/7 via live chat.</p>
+                </div>
+
+                <div class="help-card">
+                    <div class="help-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Video Tutorials</h3>
+                    <p>Step-by-step video guides to help you navigate the platform easily.</p>
+                </div>
+
+                <div class="help-card">
+                    <div class="help-icon">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <h3>Help Center</h3>
+                    <p>Comprehensive FAQs and articles to answer all your questions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="index.html" class="footer-logo"><!-- <i class="fas fa-graduation-cap"></i> EduCare -->
+<img src="./logo.jpg" height="50px" alt="logo"></a>
+                    <p>Empowering Pakistani students through quality education and innovative learning approaches since
+                        2005.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="admissions.html">Admissions</a></li>
+                        <li><a href="results.html">Results</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="faculty.html">Faculty</a></li>
+                        <li><a href="facilities.html">Facilities</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="portal.html">Student Portal</a></li>
+                    </ul>
+                </div>
+
+                <div class="contact-info">
+                    <h3>Connect With Us</h3>
+                    <p style="color: #d1d5db; margin-bottom: 20px; font-size: 0.95rem;">Follow us on social media for
+                        updates, announcements, and more.</p>
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+92-51-1234567</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@educare.edu.pk</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Model Town, Lahore, Pakistan</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2025 EduCare Institute. All rights reserved.</p>
+                <p class="affiliation">Registered with Federal Board & Punjab Board | Affiliated Educational Institution
+                </p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const menuToggle = document.getElementById("menuToggle");
+        const navLinks = document.getElementById("navLinks");
+
+        menuToggle.addEventListener("click", () => {
+            navLinks.classList.toggle("active");
+        });
+    </script>
+    <script>
+        // Simple script for navigation active state
+        document.addEventListener('DOMContentLoaded', function () {
+            const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('.nav-links a');
+
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Add hover effect to facility cards
+            const facilityCards = document.querySelectorAll('.facility-card');
+            facilityCards.forEach(card => {
+                card.addEventListener('mouseenter', function () {
+                    this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.15)';
+                });
+
+                card.addEventListener('mouseleave', function () {
+                    this.style.boxShadow = 'var(--shadow)';
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

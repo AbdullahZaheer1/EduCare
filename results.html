@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results | EduCare</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary: #1a56db;
+            --secondary: #0ea5e9;
+            --accent: #10b981;
+            --dark: #1f2937;
+            --light: #f9fafb;
+            --gray: #6b7280;
+            --text: #374151;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --card-bg: #ffffff;
+        }
+
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .section-title.center {
+            text-align: center;
+        }
+
+        .section-title.center::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Header & Navigation */
+        header {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 0px 20px;
+}
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .results-hero {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 80px 0 40px;
+            /* text-align: center; */
+        }
+
+        .results-hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+
+        .results-hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 800px;
+            /* margin: 0 auto 40px; */
+        }
+
+        /* Results Check Section */
+        .results-check {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .check-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        .check-form {
+            background-color: var(--light);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .check-form h2 {
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #d1d5db;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23374151' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 16px;
+        }
+
+        .result-preview {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+            color: white;
+        }
+
+        .result-preview h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .result-preview p {
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* Top Performers Section */
+        .top-performers {
+            padding: 80px 0;
+        }
+
+        .performers-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        .performers-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            box-shadow: var(--shadow);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .performers-table thead {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .performers-table th {
+            padding: 20px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .performers-table tbody tr {
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .performers-table tbody tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+
+        .performers-table td {
+            padding: 18px 20px;
+            color: var(--text);
+        }
+
+        .performers-table td:first-child {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .success-rate {
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .toppers-count {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Achievements Section */
+        .achievements-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .achievement-card {
+            background-color: var(--light);
+            padding: 40px 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .achievement-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        .achievement-icon i {
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        .achievement-card h3 {
+            font-size: 1.4rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .achievement-card p {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 2fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .footer-about p {
+            color: #d1d5db;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+        }
+
+        .footer-links h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .contact-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            color: #d1d5db;
+        }
+
+        .contact-item i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        .affiliation {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: #d1d5db;
+        }
+
+        /* Hamburger */
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                flex-direction: column;
+                align-items: center;
+                display: none;
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .check-container,
+            .achievements-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .results-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.7rem;
+            }
+
+            .performers-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <!-- <i class="fas fa-graduation-cap"></i> EduCare -->
+<img src="./logo.jpg" height="50px" alt="logo">
+            </a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./about.html">About</a></li>
+                <li><a href="./courses.html">Courses</a></li>
+                <li><a href="./admissions.html">Admissions</a></li>
+                <li><a href="./faculty.html">Faculty</a></li>
+                <li><a href="./facilities.html">Facilities</a></li>
+                <li><a href="./gallery.html">Gallery</a></li>
+                <li><a href="./contact.html">Contact</a></li>
+            </ul>
+
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="results-hero">
+        <div class="container">
+            <h1>Results & Achievements</h1>
+            <p>EduCare takes pride in the outstanding academic performance of our students. Check your results and
+                celebrate our achievements together.</p>
+        </div>
+    </section>
+
+    <!-- Results Check Section -->
+    <section class="results-check">
+        <div class="container">
+            <div class="check-container">
+                <div class="check-form">
+                    <h2>Check Your Result</h2>
+                    <p style="color: var(--gray); margin-bottom: 25px;">Enter your details below to view your result.
+                    </p>
+
+                    <form id="result-form">
+                        <div class="form-group">
+                            <label for="roll-number">Roll Number *</label>
+                            <input type="text" id="roll-number" class="form-control"
+                                placeholder="Enter roll number (e.g., 2024001)" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exam-type">Exam Type *</label>
+                            <select id="exam-type" class="form-control" required>
+                                <option value="">Select exam type</option>
+                                <option value="annual">Annual Exam 2024</option>
+                                <option value="supply">Supply Exam 2024</option>
+                                <option value="test">Test Exam 2024</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="year">Year *</label>
+                            <select id="year" class="form-control" required>
+                                <option value="">Select year</option>
+                                <option value="2024">2024</option>
+                                <option value="2023">2023</option>
+                                <option value="2022">2022</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn" style="width: 100%;">View Result</button>
+                    </form>
+                </div>
+
+                <div class="result-preview">
+                    <h3>Result Preview</h3>
+                    <p>Enter your details to see your comprehensive result card with subject-wise marks, grades, and
+                        position.</p>
+                    <div style="margin: 30px 0;">
+                        <i class="fas fa-file-alt" style="font-size: 4rem; opacity: 0.8;"></i>
+                    </div>
+                    <p>Your result will include:</p>
+                    <div style="text-align: left; max-width: 300px; margin: 20px auto;">
+                        <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                            <i class="fas fa-check" style="margin-right: 10px;"></i>
+                            <span>Subject-wise Marks</span>
+                        </div>
+                        <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                            <i class="fas fa-check" style="margin-right: 10px;"></i>
+                            <span>Grades & Percentage</span>
+                        </div>
+                        <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                            <i class="fas fa-check" style="margin-right: 10px;"></i>
+                            <span>Overall Position</span>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <i class="fas fa-check" style="margin-right: 10px;"></i>
+                            <span>Remarks</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top Performers Section -->
+    <section class="top-performers">
+        <div class="container">
+            <h2 class="section-title center">Top Performers 2024</h2>
+            <p class="performers-intro">Congratulations to our position holders who have made us proud!</p>
+
+            <table class="performers-table">
+                <thead>
+                    <tr>
+                        <th>Year</th>
+                        <th>Total Students</th>
+                        <th>Success Rate</th>
+                        <th>Toppers (A+ Grade)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2024</td>
+                        <td>500</td>
+                        <td class="success-rate">98%</td>
+                        <td class="toppers-count">150</td>
+                    </tr>
+                    <tr>
+                        <td>2023</td>
+                        <td>480</td>
+                        <td class="success-rate">97%</td>
+                        <td class="toppers-count">135</td>
+                    </tr>
+                    <tr>
+                        <td>2022</td>
+                        <td>450</td>
+                        <td class="success-rate">96%</td>
+                        <td class="toppers-count">120</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section class="achievements-section">
+        <div class="container">
+            <h2 class="section-title center">Notable Achievements</h2>
+
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>Board Position Holders</h3>
+                    <p>12 students secured positions in top 10 of Federal and Punjab Boards in 2024. Our students
+                        consistently achieve top ranks in board examinations.</p>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Improved Performance</h3>
+                    <p>20% increase in students scoring above 90% compared to previous year. Continuous improvement in
+                        academic results year after year.</p>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Best Results</h3>
+                    <p>All our Pre-Medical and Pre-Engineering students passed with distinction in their exams. 100%
+                        pass rate in science programs for 3 consecutive years.</p>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <h3>University Admissions</h3>
+                    <p>85% of our students get admission to top universities across Pakistan including LUMS, NUST, UET,
+                        and Punjab University.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="index.html" class="footer-logo"><!-- <i class="fas fa-graduation-cap"></i> EduCare -->
+<img src="./logo.jpg" height="50px" alt="logo"></a>
+                    <p>Empowering Pakistani students through quality education and innovative learning approaches since
+                        2005.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="admissions.html">Admissions</a></li>
+                        <li><a href="results.html">Results</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="faculty.html">Faculty</a></li>
+                        <li><a href="facilities.html">Facilities</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="portal.html">Student Portal</a></li>
+                    </ul>
+                </div>
+
+                <div class="contact-info">
+                    <h3>Connect With Us</h3>
+                    <p style="color: #d1d5db; margin-bottom: 20px; font-size: 0.95rem;">Follow us on social media for
+                        updates, announcements, and more.</p>
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+92-51-1234567</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@educare.edu.pk</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Model Town, Lahore, Pakistan</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2025 EduCare Institute. All rights reserved.</p>
+                <p class="affiliation">Registered with Federal Board & Punjab Board | Affiliated Educational Institution
+                </p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const menuToggle = document.getElementById("menuToggle");
+        const navLinks = document.getElementById("navLinks");
+
+        menuToggle.addEventListener("click", () => {
+            navLinks.classList.toggle("active");
+        });
+    </script>
+    <script>
+        // Simple script for navigation active state
+        document.addEventListener('DOMContentLoaded', function () {
+            const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('.nav-links a');
+
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Result form submission
+            const resultForm = document.getElementById('result-form');
+            resultForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const rollNumber = document.getElementById('roll-number').value;
+                const examType = document.getElementById('exam-type').value;
+                const year = document.getElementById('year').value;
+
+                if (!rollNumber || !examType || !year) {
+                    alert('Please fill in all required fields.');
+                    return;
+                }
+
+                // Show result in an alert (in real implementation, this would fetch from server)
+                const examTypeText = {
+                    'annual': 'Annual Exam 2024',
+                    'supply': 'Supply Exam 2024',
+                    'test': 'Test Exam 2024'
+                }[examType] || examType;
+
+                alert(`Result for Roll Number: ${rollNumber}\nExam: ${examTypeText}\nYear: ${year}\n\nIn a real implementation, this would display the actual result with marks and grades.`);
+
+                // Reset form
+                resultForm.reset();
+            });
+
+            // Add hover effect to achievement cards
+            const achievementCards = document.querySelectorAll('.achievement-card');
+            achievementCards.forEach(card => {
+                card.addEventListener('mouseenter', function () {
+                    this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.15)';
+                });
+
+                card.addEventListener('mouseleave', function () {
+                    this.style.boxShadow = 'var(--shadow)';
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

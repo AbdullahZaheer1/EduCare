@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admissions | EduCare</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary: #1a56db;
+            --secondary: #0ea5e9;
+            --accent: #10b981;
+            --dark: #1f2937;
+            --light: #f9fafb;
+            --gray: #6b7280;
+            --text: #374151;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --card-bg: #ffffff;
+        }
+
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Header & Navigation */
+        header {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 0px 20px;
+}
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Hero Section */
+        .admissions-hero {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 80px 0 40px;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .hero-text {
+            flex: 1;
+            padding-right: 40px;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--dark);
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
+        .admission-deadline {
+            background-color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .admission-deadline i {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-right: 15px;
+        }
+
+        .deadline-text {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .deadline-date {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        /* Admission Process */
+        .process-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .process-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .process-title h2 {
+            font-size: 2rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .process-title p {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 20px;
+            position: relative;
+        }
+
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 50px;
+            right: 50px;
+            height: 3px;
+            background-color: #e5e7eb;
+            z-index: 1;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .step-content h3 {
+            font-size: 1.2rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .step-content p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Application Form */
+        .form-section {
+            padding: 80px 0;
+        }
+
+        .form-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .form-side {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-title {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #d1d5db;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23374151' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 16px;
+        }
+
+        .form-check {
+            display: flex;
+            align-items: flex-start;
+            margin-top: 20px;
+        }
+
+        .form-check-input {
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+
+        .form-check-label {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        /* Fee Structure */
+        .fee-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .fee-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            box-shadow: var(--shadow);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .fee-table thead {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .fee-table th {
+            padding: 20px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .fee-table tbody tr {
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .fee-table tbody tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+
+        .fee-table td {
+            padding: 18px 20px;
+            color: var(--text);
+        }
+
+        .fee-table td:first-child {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .fee-amount {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .download-btn {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        /* Required Documents */
+        .documents-section {
+            padding: 80px 0;
+        }
+
+        .documents-list {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            margin-top: 30px;
+        }
+
+        .documents-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .document-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .document-item i {
+            color: var(--primary);
+            margin-right: 15px;
+            margin-top: 3px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 2fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .footer-about p {
+            color: #d1d5db;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+        }
+
+        .footer-links h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .contact-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            color: #d1d5db;
+        }
+
+        .contact-item i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        /* Hamburger */
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                flex-direction: column;
+                align-items: center;
+                display: none;
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .process-steps {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .form-container {
+                grid-template-columns: 1fr;
+            }
+
+            .documents-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content {
+                flex-direction: column;
+            }
+
+            .hero-text {
+                padding-right: 0;
+                margin-bottom: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .process-steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.7rem;
+            }
+
+            .fee-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .process-steps::before {
+                display: none;
+            }
+
+            .step {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <!-- <i class="fas fa-graduation-cap"></i> EduCare -->
+<img src="./logo.jpg" height="50px" alt="logo">
+            </a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./about.html">About</a></li>
+                <li><a href="./courses.html">Courses</a></li>
+                <li><a href="./admissions.html">Admissions</a></li>
+                <li><a href="./faculty.html">Faculty</a></li>
+                <li><a href="./facilities.html">Facilities</a></li>
+                <li><a href="./gallery.html">Gallery</a></li>
+                <li><a href="./contact.html">Contact</a></li>
+            </ul>
+
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- Hero Section -->
+    <section class="admissions-hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Admissions</h1>
+                <p>Join EduCare and start your journey towards academic excellence. Admissions are now open for the
+                    academic year 2024-2025.</p>
+
+                <div class="admission-deadline">
+                    <i class="far fa-clock"></i>
+                    <div>
+                        <div class="deadline-text">Admission Deadline</div>
+                        <div class="deadline-date">June 30, 2024</div>
+                    </div>
+                </div>
+
+                <a href="#application-form" class="btn">Apply Now</a>
+            </div>
+
+            <div class="hero-image">
+                <!-- Placeholder for hero image -->
+                <div
+                    style="width: 400px; height: 300px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+                    <i class="fas fa-user-graduate" style="font-size: 5rem; opacity: 0.8;"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admission Process -->
+    <section class="process-section">
+        <div class="container">
+            <div class="process-title">
+                <h2>Admission Process</h2>
+                <p>Simple and straightforward admission process in 6 easy steps</p>
+            </div>
+
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Fill Application</h3>
+                        <p>Complete online application form with accurate information</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Submit Documents</h3>
+                        <p>Submit required documents including previous certificates</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Pay Fee</h3>
+                        <p>Pay admission fee through bank or online payment</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Confirmation</h3>
+                        <p>Receive admission confirmation via email/SMS</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>Orientation</h3>
+                        <p>Attend orientation session for new students</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <h3>Start Classes</h3>
+                        <p>Begin your academic journey with EduCare</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Form -->
+    <section class="form-section" id="application-form">
+        <div class="container">
+            <h2 class="section-title">Online Application Form</h2>
+            <p style="color: var(--gray); margin-bottom: 30px;">Fill the form below to start your admission process</p>
+
+            <div class="form-container">
+                <div class="form-side">
+                    <h3 class="form-title">Personal Information</h3>
+
+                    <form id="admission-form">
+                        <div class="form-group">
+                            <label for="full-name">Student Full Name</label>
+                            <input type="text" id="full-name" class="form-control" placeholder="Enter full name"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="father-name">Father's Full Name</label>
+                            <input type="text" id="father-name" class="form-control" placeholder="Enter father's name"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cnic">CNIC / B-Form Number</label>
+                            <input type="text" id="cnic" class="form-control" placeholder="XXXXX-XXXXXXX-X" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" class="form-control" placeholder="+92 300 0000000" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" placeholder="student@example.com"
+                                required>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="form-side">
+                    <h3 class="form-title">Academic Information</h3>
+
+                    <form id="academic-form">
+                        <div class="form-group">
+                            <label for="program">Select Program</label>
+                            <select id="program" class="form-control" required>
+                                <option value="">Choose your program</option>
+                                <option value="matric">Matric (Class 9-10)</option>
+                                <option value="fsc-medical">F.Sc Pre-Medical</option>
+                                <option value="fsc-engineering">F.Sc Pre-Engineering</option>
+                                <option value="ics">ICS (Computer Science)</option>
+                                <option value="fa">FA (Humanities)</option>
+                                <option value="icom">I.Com (Commerce)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <textarea id="address" class="form-control" rows="3"
+                                placeholder="Complete address with city" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="previous-school">Previous School/College</label>
+                            <input type="text" id="previous-school" class="form-control"
+                                placeholder="Name of previous institution" required>
+                        </div>
+
+                        <div class="form-check">
+                            <input type="checkbox" id="declaration" class="form-check-input" required>
+                            <label for="declaration" class="form-check-label">
+                                I hereby declare that the information provided is correct to the best of my knowledge
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn" style="width: 100%; margin-top: 30px;">Submit
+                            Application</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fee Structure -->
+    <section class="fee-section">
+        <div class="container">
+            <h2 class="section-title">Fee Structure</h2>
+            <p style="color: var(--gray); margin-bottom: 30px;">Transparent and affordable fee structure for all
+                programs</p>
+
+            <table class="fee-table">
+                <thead>
+                    <tr>
+                        <th>Course / Program</th>
+                        <th>Admission Fee</th>
+                        <th>Monthly Fee</th>
+                        <th>Annual Fee</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Matric (Class 9-10)</td>
+                        <td class="fee-amount">PKR 5,000</td>
+                        <td class="fee-amount">PKR 3,000</td>
+                        <td class="fee-amount">PKR 40,000</td>
+                    </tr>
+                    <tr>
+                        <td>F.Sc Pre-Medical</td>
+                        <td class="fee-amount">PKR 8,000</td>
+                        <td class="fee-amount">PKR 4,500</td>
+                        <td class="fee-amount">PKR 58,000</td>
+                    </tr>
+                    <tr>
+                        <td>F.Sc Pre-Engineering</td>
+                        <td class="fee-amount">PKR 8,000</td>
+                        <td class="fee-amount">PKR 4,500</td>
+                        <td class="fee-amount">PKR 58,000</td>
+                    </tr>
+                    <tr>
+                        <td>ICS (Computer Science)</td>
+                        <td class="fee-amount">PKR 10,000</td>
+                        <td class="fee-amount">PKR 4,500</td>
+                        <td class="fee-amount">PKR 55,000</td>
+                    </tr>
+                    <tr>
+                        <td>FA (Humanities)</td>
+                        <td class="fee-amount">PKR 7,000</td>
+                        <td class="fee-amount">PKR 3,500</td>
+                        <td class="fee-amount">PKR 45,000</td>
+                    </tr>
+                    <tr>
+                        <td>I.Com (Commerce)</td>
+                        <td class="fee-amount">PKR 7,000</td>
+                        <td class="fee-amount">PKR 3,500</td>
+                        <td class="fee-amount">PKR 45,000</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="download-btn">
+                <a href="#" class="btn"><i class="fas fa-download"></i> Download Complete Fee Structure</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Required Documents -->
+    <section class="documents-section">
+        <div class="container">
+            <h2 class="section-title">Required Documents</h2>
+            <p style="color: var(--gray); margin-bottom: 30px;">Please keep the following documents ready before
+                applying</p>
+
+            <div class="documents-list">
+                <div class="documents-grid">
+                    <div class="document-item">
+                        <i class="far fa-check-circle"></i>
+                        <span>Recent passport size photographs (4 copies)</span>
+                    </div>
+
+                    <div class="document-item">
+                        <i class="far fa-check-circle"></i>
+                        <span>Copy of previous academic certificate (attested)</span>
+                    </div>
+
+                    <div class="document-item">
+                        <i class="far fa-check-circle"></i>
+                        <span>Copy of CNIC / B-Form</span>
+                    </div>
+
+                    <div class="document-item">
+                        <i class="far fa-check-circle"></i>
+                        <span>Father/Guardian CNIC copy</span>
+                    </div>
+
+                    <div class="document-item">
+                        <i class="far fa-check-circle"></i>
+                        <span>Character certificate from previous institution</span>
+                    </div>
+
+                    <div class="document-item">
+                        <i class="far fa-check-circle"></i>
+                        <span>Medical/fitness certificate</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="index.html" class="footer-logo"><!-- <i class="fas fa-graduation-cap"></i> EduCare -->
+<img src="./logo.jpg" height="50px" alt="logo"></a>
+                    <p>Empowering Pakistani students through quality education and interactive learning approaches since
+                        2004.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="admissions.html">Admissions</a></li>
+                        <li><a href="results.html">Results</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="faculty.html">Faculty</a></li>
+                        <li><a href="facilities.html">Facilities</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="portal.html">Student Portal</a></li>
+                    </ul>
+                </div>
+
+                <div class="contact-info">
+                    <h3>Contact Us</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+92-51-1234567</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@educare.edu.pk</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Model Town, Lahore, Pakistan</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-certificate"></i>
+                        <span>Federal Board & Punjab Board Affiliated</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2024 EduCare Institute. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const menuToggle = document.getElementById("menuToggle");
+        const navLinks = document.getElementById("navLinks");
+
+        menuToggle.addEventListener("click", () => {
+            navLinks.classList.toggle("active");
+        });
+    </script>
+    <script>
+        // Simple script for form submission
+        document.addEventListener('DOMContentLoaded', function () {
+            const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('.nav-links a');
+
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Form submission
+            const admissionForm = document.getElementById('admission-form');
+            const academicForm = document.getElementById('academic-form');
+
+            academicForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                // Get form values
+                const fullName = document.getElementById('full-name').value;
+                const program = document.getElementById('program').value;
+
+                if (!document.getElementById('declaration').checked) {
+                    alert('Please accept the declaration to proceed.');
+                    return;
+                }
+
+                // Show success message
+                alert(`Thank you, ${fullName}! Your application for ${program} has been submitted successfully. We will contact you soon.`);
+
+                // Reset forms
+                admissionForm.reset();
+                academicForm.reset();
+            });
+
+            // Apply Now button scroll to form
+            document.querySelectorAll('.btn').forEach(button => {
+                if (button.textContent.includes('Apply Now') && button.href === '#') {
+                    button.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        document.getElementById('application-form').scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
