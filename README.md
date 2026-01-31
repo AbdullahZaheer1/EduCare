@@ -1,4 +1,6 @@
-# EduCare ## School Website 
+# EduCare 
+
+## School Website 
 
 ### Pages: Home, About, Admissions, Contact, Courses, Facilities, Faculty, Gallary, Results 
 
